@@ -28,7 +28,7 @@ public class Table implements ITable {
 		StringBuilder sb = new StringBuilder();
 		sb.append("CREATE TABLE IF NOT EXISTS `" + this.name + "` (");
 		if (this.isIdPrimary()) {
-			sb.append("id INT AUTO_INCREMENT PRIMARY KEY, ");
+			sb.append("id BIGINT(20) AUTO_INCREMENT PRIMARY KEY, ");
 		}
 		this.query.forEach(query -> sb.append(query));
 		

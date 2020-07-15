@@ -12,7 +12,7 @@ public class InsertRunnable implements ISQLRunnable {
 	
 	private final SQL sql;
 	private final Query query;
-	private int id;
+	private long id;
 
 	public InsertRunnable(SQL sql, Query query) {
 		this.sql = sql;
@@ -28,7 +28,7 @@ public class InsertRunnable implements ISQLRunnable {
 
 			try (ResultSet result = statement.getGeneratedKeys()) {
 				if (result.first()) {
-					this.id = result.getInt(1);
+					this.id = result.getLong(1);
 				}
 			}
 		} catch (SQLException ex) {
@@ -45,7 +45,7 @@ public class InsertRunnable implements ISQLRunnable {
 		return this.sql;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 

@@ -41,7 +41,7 @@ public class SQL extends SQLThread {
 	}
 	
 	@Override
-	public int runInsert(Query query) {
+	public long runInsert(Query query) {
 		InsertRunnable runnable = new InsertRunnable(this, query);
 		runnable.run();
 		return runnable.getId();
