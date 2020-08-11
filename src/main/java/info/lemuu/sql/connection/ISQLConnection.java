@@ -33,4 +33,6 @@ public interface ISQLConnection {
 
 	long runInsert(Query query);
 
+	void runExecute(Query query, boolean asynchronously);
+
 }
