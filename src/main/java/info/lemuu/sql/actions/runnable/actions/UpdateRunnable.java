@@ -21,7 +21,7 @@ public class UpdateRunnable implements ISQLRunnable {
 		try (PreparedStatement statement = this.sql.prepareStatement(this.query.getQuery())) {
 			this.query.applyObjects(statement);
 
-			statement.execute();
+			statement.executeUpdate();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			System.err.println("Error at execute query '" + this.query.getQuery() + "'");
