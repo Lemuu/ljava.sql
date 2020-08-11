@@ -1,17 +1,19 @@
 package info.lemuu.sql;
 
-import java.io.File;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.concurrent.Executors;
-import info.lemuu.sql.thread.SQLThread;
-import info.lemuu.sql.connection.SQLType;
 import info.lemuu.sql.actions.query.Query;
-import java.util.concurrent.ExecutorService;
-import info.lemuu.sql.credentials.SQLCredentials;
 import info.lemuu.sql.actions.runnable.ISQLRunnable;
-import info.lemuu.sql.actions.runnable.actions.UpdateRunnable;
+import info.lemuu.sql.actions.runnable.actions.ExecuteRunnable;
 import info.lemuu.sql.actions.runnable.actions.InsertRunnable;
+import info.lemuu.sql.actions.runnable.actions.UpdateRunnable;
+import info.lemuu.sql.connection.SQLType;
+import info.lemuu.sql.credentials.SQLCredentials;
+import info.lemuu.sql.thread.SQLThread;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class SQL extends SQLThread {
 
@@ -45,6 +47,11 @@ public class SQL extends SQLThread {
 		InsertRunnable runnable = new InsertRunnable(this, query);
 		runnable.run();
 		return runnable.getId();
+	}
+
+	@Override
+	public void runExecute(Query query, boolean asynchronously) {
+		this.run(new ExecuteRunnable(this, query), asynchronously);
 	}
 	
 	private void run(ISQLRunnable runnable, boolean asynchronously) {
