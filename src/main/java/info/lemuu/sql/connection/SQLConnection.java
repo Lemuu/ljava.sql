@@ -40,11 +40,11 @@ public abstract class SQLConnection implements ISQLConnection {
 																		this.sqlCredentials.getUser(), this.sqlCredentials.getPassword());
 				this.statement = connection.createStatement();
 			}
-			else if (this.sqlType.equals(SQLType.SQL)) {
+			else if (this.sqlType.equals(SQLType.SQLITE)) {
 				if (!this.directory.exists()) {
 					this.directory.mkdir();
 				}
-				File file = new File(this.directory, this.database + ".db");
+				File file = new File(this.directory, this.database + ".sqlite");
 				
 				try {
 					Class.forName("org.sqlite.JDBC");
